@@ -40,7 +40,7 @@ function App() {
     });
   };
   const handleShow = (e) => {
-    if (state.companyName.length === 0 || state.companyName.length === 0) {
+    if (state.companyName.length === 0) {
       show({
         ...showLogos,
         active: false,
