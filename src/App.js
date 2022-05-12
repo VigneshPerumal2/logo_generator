@@ -128,7 +128,6 @@ function App() {
               name="companyName"
               value={state.companyName}
               onChange={handleChange}
-              maxLength="15"
               required
             />
           </label>
@@ -140,7 +139,6 @@ function App() {
               name="slogan"
               value={state.slogan}
               onChange={handleChange}
-              maxLength="15"
               required
             />
           </label>
