@@ -51,7 +51,6 @@ function LogoGenerator(props) {
       },
     });
   }, []);
-
   let fontPairs = [
     {
       companyName: "Georgia",
