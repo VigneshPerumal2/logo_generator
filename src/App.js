@@ -15,6 +15,9 @@ import {
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 
 function App() {
+  /*
+   * This is a Hook which calls the LogoGenerator if the given company details are valid
+   * */
   const [showLogos, show] = useState({
     active: false,
     companyName: "",
@@ -22,11 +25,16 @@ function App() {
     error: "",
     showError: false,
   });
+  /*
+   * This is a hook which deals with input of Company name and Slogan
+   * */
   const [state, setState] = useState({
     companyName: "",
     slogan: "",
   });
-
+  /*
+   * This functions handles the Controlled Input of the form
+   * */
   const handleChange = (e) => {
     setState({
       ...state,
@@ -39,7 +47,11 @@ function App() {
       slogan: "",
     });
   };
+  /*
+   * This Function handles the showing of Logos upon validations
+   * */
   const handleShow = (e) => {
+    e.preventDefault();
     if (state.companyName.length === 0) {
       show({
         ...showLogos,
@@ -48,6 +60,24 @@ function App() {
         slogan: "",
         showError: true,
         error: "Enter Company Details",
+      });
+    } else if (state.companyName.length > 15) {
+      show({
+        ...showLogos,
+        active: false,
+        companyName: "",
+        slogan: "",
+        showError: true,
+        error: "Company Name should be less than 15 characters",
+      });
+    } else if (state.slogan.length > 15) {
+      show({
+        ...showLogos,
+        active: false,
+        companyName: "",
+        slogan: "",
+        showError: true,
+        error: "Slogan should be less than 15 characters",
       });
     } else {
       show({
@@ -98,6 +128,7 @@ function App() {
               name="companyName"
               value={state.companyName}
               onChange={handleChange}
+              maxLength="15"
               required
             />
           </label>
@@ -109,6 +140,7 @@ function App() {
               name="slogan"
               value={state.slogan}
               onChange={handleChange}
+              maxLength="15"
               required
             />
           </label>

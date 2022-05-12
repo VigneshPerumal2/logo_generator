@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import "./App.css";
-import { ImageList, ImageListItem, Paper } from "@mui/material";
+import {ImageList, ImageListItem, Paper} from "@mui/material";
 import logo1 from "./Images/1.svg";
 import logo2 from "./Images/2.svg";
 import logo3 from "./Images/3.svg";
@@ -13,6 +13,10 @@ import logo9 from "./Images/9.svg";
 import Typography from "@mui/material/Typography";
 import WebFont from "webfontloader";
 
+
+/*
+This is a shuffle utility function used for randomizing the list
+*/
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
     // Generate random number
@@ -24,6 +28,9 @@ function shuffleArray(array) {
   return array;
 }
 
+/*
+* This is a Logo Generating Function which works on Company Name and Slogan
+* */
 function LogoGenerator(props) {
   useEffect(() => {
     WebFont.load({
@@ -51,6 +58,10 @@ function LogoGenerator(props) {
       },
     });
   }, []);
+  /*
+  * These are the list of popular font pairs used across the popular websites
+  * These will be used randomly with logos
+  * */
   let fontPairs = [
     {
       companyName: "Georgia",
@@ -89,6 +100,10 @@ function LogoGenerator(props) {
       slogan: "Rubik",
     },
   ];
+  /*
+  * These are the details of the pre-made SVG logos
+  * These logos will be picked and placed randomly on the page
+  * */
   let itemData = [
     {
       img: logo1,
@@ -140,51 +155,51 @@ function LogoGenerator(props) {
   itemData = shuffleArray(itemData);
   fontPairs = shuffleArray(fontPairs);
   return (
-    <React.Fragment>
-      <div align="center">
-        <ImageList sx={{ width: 1200 }} cols={3} rowHeight={300} gap={20}>
-          {itemData.map((item, index) => (
-            <Paper
-              variant="elevation"
-              square
-              style={{ padding: "20px" }}
-              key={item.img}
-              elevation={2}
-            >
-              <ImageListItem>
-                <img
-                  style={{
-                    margin: "auto",
-                    padding: "10px",
-                    alignItems: "center",
-                    objectFit: "scale-down",
-                    width: "200px",
-                    height: "200px",
-                  }}
-                  src={item.img}
-                  alt={item.title}
-                  loading="lazy"
-                />
-                <Typography
-                  variant="h2"
-                  align="center"
-                  fontFamily={fontPairs[index].companyName}
+      <React.Fragment>
+        <div align="center">
+          <ImageList sx={{width: 1200}} cols={3} rowHeight={300} gap={20}>
+            {itemData.map((item, index) => (
+                <Paper
+                    variant="elevation"
+                    square
+                    style={{padding: "20px"}}
+                    key={item.img}
+                    elevation={2}
                 >
-                  {props.CompanyName}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  align="center"
-                  fontFamily={fontPairs[index].slogan}
-                >
-                  {props.slogan}
-                </Typography>
-              </ImageListItem>
-            </Paper>
-          ))}
-        </ImageList>
-      </div>
-    </React.Fragment>
+                  <ImageListItem>
+                    <img
+                        style={{
+                          margin: "auto",
+                          padding: "10px",
+                          alignItems: "center",
+                          objectFit: "scale-down",
+                          width: "200px",
+                          height: "200px",
+                        }}
+                        src={item.img}
+                        alt={item.title}
+                        loading="lazy"
+                    />
+                    <Typography
+                        variant="h2"
+                        align="center"
+                        fontFamily={fontPairs[index].companyName}
+                    >
+                      {props.CompanyName}
+                    </Typography>
+                    <Typography
+                        variant="caption"
+                        align="center"
+                        fontFamily={fontPairs[index].slogan}
+                    >
+                      {props.slogan}
+                    </Typography>
+                  </ImageListItem>
+                </Paper>
+            ))}
+          </ImageList>
+        </div>
+      </React.Fragment>
   );
 }
 
